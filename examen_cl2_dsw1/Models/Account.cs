@@ -4,10 +4,9 @@ namespace examen_cl2_dsw1.Models
 {
     public class Account
     {
-        [Key]
-        private int Id { get; set; }
-        private string? AccountNumber { get; set; }
-        private decimal Amount { get; set; }
-        private bool Active { get; set; }
+        public int Id { get; set; }
+        public string? AccountNumber { get; set; }
+        public decimal Amount { get; set; }
+        public bool Active { get; set; }
     }
 }

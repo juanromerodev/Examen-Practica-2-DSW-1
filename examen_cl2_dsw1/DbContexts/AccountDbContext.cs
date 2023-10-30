@@ -15,7 +15,6 @@ namespace examen_cl2_dsw1.DbContexts
         }
         public DbSet<Account> Accounts { get; set; }
 
-
     }
 }
 

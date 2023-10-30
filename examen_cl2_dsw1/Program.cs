@@ -1,5 +1,7 @@
 
 using examen_cl2_dsw1.DbContexts;
+using examen_cl2_dsw1.Exceptions;
+using examen_cl2_dsw1.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -16,6 +18,9 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("AccountDB");
 builder.Services.AddDbContext<AccountDbContext>(options => options.UseSqlServer(connectionString));
 
+//Configurando la inyeccion de dependencia para ICustomerRepository
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +33,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware(typeof(GlobalExceptionHandler));
 
 app.MapControllers();
 
